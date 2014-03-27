@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Kombinování map - StareMapy.cz</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.css" />
+    <script src="http://cdn.leafletjs.com/leaflet-0.7.2/leaflet.js"></script>
+    <style>
+      html, body, #map {width:100%; height:100%; margin:0; padding:0; font-family: sans-serif}
+      #sliders{position: fixed; bottom: 10px; left: 10px; z-index: 1000; background-color: #fff; opacity: 0.8; padding: 10px}
+      #header{position: fixed; top: 10px; z-index: 1000; background-color: #fff; opacity: 0.8; padding: 5px 20px 5px 20px; margin-left: 40%}
+      h1{margin: 0}
+      p{margin: 0; text-align: center; padding-bottom: 5px;}
+      a{color: #000;}
+    </style> 
+  </head>
+  <body>
+    <div id="header">
+      <h1>Kombinování map</h1>
+      <p><a href="http://staremapy.cz" target="_blank">StareMapy.cz</a></p>
+    </div>
+    <div id="map"></div>    
+    <div id="sliders">
+      <input type="checkbox" name="layerchecker" checked="" onclick="updateVisibility(map3, 3, this.checked);">
+      <label>Praha: plán města 1930 - 1939</label><br>
+      <input id="slide" type="range" min="0" max="1" step="0.1" value="0.8" onchange="updateOpacity(map3, this.value)"><br>
+
+      <input type="checkbox" name="layerchecker" checked="checked" onclick="updateVisibility(map2, 2, this.checked);">
+      <label>Praha 1833</label><br>
+      <input id="slide" type="range" min="0" max="1" step="0.1" value="1" onchange="updateOpacity(map2, this.value)"><br>
+
+      <input type="checkbox" name="layerchecker" onclick="updateVisibility(map1, 1, this.checked);">
+      <label>Orientační plán král. hlav. města Prahy s předměstími - 1895</label><br>,
+      <input id="slide" type="range" min="0" max="1" step="0.1" value="1" onchange="updateOpacity(map1, this.value)"><br>
+
+      <input type="checkbox" name="layerchecker" onclick="updateVisibility(map0, 0, this.checked);">
+      <label>Plan von der den 6ten May Ao 1757 bey Prag</label><br>,
+      <input id="slide" type="range" min="0" max="1" step="0.1" value="1" onchange="updateOpacity(map0, this.value)"><br>
+
+
+      Funguje i pro jakoukoliv jinou mapu ze StareMapy.cz.<br/>
+      Služba OGC WMTS i pro GIS nástroje.
+      <!-- http://georeferencer.tileserver.com/APIKEY/map/tzQNNfXOKD1qb0bqT1ko2U/201303292246-zvzbdz/wmts -->
+
+    </div>
+     <div style="width:400px;height:40px;padding:10px;background-color:rgba(255,255,255,0.75);font-family:sans-serif;font-size:9px;position:absolute;bottom:20px;right:0px;">This software was supported by the Programme of Applied Research and Development of the National and Cultural Identity (NAKI) from the Ministry of Culture of the Czech Republic, project No. DF11P01OVV003 - <a href="http://www.temap.cz/">TEMAP - Technology for access to Czech map collections: methodology and software for protection and re-use of national cartographic heritage.</a></div>
+    <script type="text/javascript">
+
+    //code from: http://georeferencer.tileserver.com/APIKEY/map/u9JghgrqZ7zMx7vpdxYuyQ/201303240913-aTjgge/#affine/leaflet.code
+    var mapBounds0 = new L.LatLngBounds(
+            new L.LatLng(49.984649, 14.289331),
+            new L.LatLng(50.171546, 14.645757));
+    var map0 = L.tileLayer('http://georeferencer-{s}.tileserver.com/APIKEY/map/u9JghgrqZ7zMx7vpdxYuyQ/201303240913-aTjgge/affine/{z}/{x}/{y}.png', {
+      minZoom: 0, 
+      maxZoom: 16,
+      bounds: mapBounds0,
+      opacity: 1,
+      subdomains: '0123',
+      zIndex: 0
+    });
+    
+    //code from: http://georeferencer.tileserver.com/APIKEY/map/qLbkqZTcRyrkJW1oR0NHcC/201403261457-wTTLVd/#affine/leaflet.code
+    var mapBounds1 = new L.LatLngBounds(
+        new L.LatLng(50.05504, 14.378044),
+        new L.LatLng(50.118804, 14.468554));
+    var map1 = L.tileLayer('http://georeferencer-{s}.tileserver.com//APIKEY/map/qLbkqZTcRyrkJW1oR0NHcC/201403261457-wTTLVd/affine/{z}/{x}/{y}.png', {
+      minZoom: 0, maxZoom: 16,
+      bounds: mapBounds1,
+      zIndex: 1,
+      opacity: 0.85, subdomains: '0123'
+    });
+
+    //code from: http://georeferencer.tileserver.com/APIKEY/map/tzQNNfXOKD1qb0bqT1ko2U/201303292246-zvzbdz/#affine/leaflet.code
+    var mapBounds2 = new L.LatLngBounds(
+            new L.LatLng(49.995445, 14.263924),
+            new L.LatLng(50.186334, 14.568667));
+    var map2 = L.tileLayer('http://georeferencer-{s}.tileserver.com/APIKEY/map/tzQNNfXOKD1qb0bqT1ko2U/201303292246-zvzbdz/affine/{z}/{x}/{y}.png', {
+      minZoom: 0, 
+      maxZoom: 16,
+      bounds: mapBounds2,
+      opacity: 1,
+      subdomains: '0123',
+      zIndex: 2
+    });
+    
+    //code from: http://georeferencer.tileserver.com/APIKEY/map/wFqXoiOMhRPuiLYH1lFQPT/201306052224-dNZh5o/#affine/leaflet.code
+    var mapBounds3 = new L.LatLngBounds(
+            new L.LatLng(50.045565, 14.360747),
+            new L.LatLng(50.125287, 14.502433));
+    var map3 = L.tileLayer('http://georeferencer-{s}.tileserver.com/APIKEY/map/wFqXoiOMhRPuiLYH1lFQPT/201306052224-dNZh5o/affine/{z}/{x}/{y}.png', {
+      minZoom: 0, 
+      maxZoom: 16,
+      bounds: mapBounds3,
+      opacity: 0.8,
+      subdomains: '0123',
+      zIndex: 3
+    });
+
+    var osm = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> \n\
+    contributors | <a href="http://staremapy.cz" target="_blank">StareMapy.cz</a>'
+      });
+      var map = L.map('map', {
+        center: [50.08629, 14.42133],
+        zoom: 14,
+        layers: [osm, map3, map2]
+      });
+
+      function updateOpacity(layer, value) {
+        layer.setOpacity(value);
+      }
+
+      function updateVisibility(layer, zIndex, checked) {
+        if (checked) {
+          layer.addTo(map);
+          layer.setZIndex(zIndex);
+        } else {
+          map.removeLayer(layer);
+        }
+      }
+    </script>
+  </body>
+</html>
