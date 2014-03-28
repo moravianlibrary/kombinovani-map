@@ -17,3 +17,8 @@ Funkce porovnávání libovolných zvolených map byla integrovaná přímo do o
 
 K dispozici je i nová online mapová služba (funkční prototyp / beta) s dlaždicemi podle standardu OGC WMTS, a ukázkami použití v různých online klientech (Google Maps API, Leaflet, OpenLayers, atd). Tato služba umožňuje studentům i odborníkům vytvořit nové webové aplikace s pomocí obvyklých nástrojů a použít kterékoliv mapy zpracované v rámci projektu StareMapy.cz.
 Podobně je mapy možné otevřít v GIS software (QGIS, ArcGIS, atd) na stolním počítači a provádět další výzkum.
+
+Ukázky
+------
+http://staremapy.georeferencer.cz/map/2kkkepIJCPtJnogMl4NDB6/201311281036-fv2xLa/visualize
+http://georeferencer.tileserver.com/APIKEY/map/2kkkepIJCPtJnogMl4NDB6/201311281036-fv2xLa
