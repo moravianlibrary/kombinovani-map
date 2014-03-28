@@ -11,3 +11,9 @@ Ukázka funkčnosti webové služby: http://moravianlibrary.github.io/kombinovan
 
 Popis
 -----
+Univerzální webová služba pro syntézu (překrývání a porovnávání) georeferencovaných map z projektu StareMapy.cz.
+
+Funkce porovnávání libovolných zvolených map byla integrovaná přímo do online nástroje StareMapy.cz. Uživatelé tak mají možnost porovnat mapy mezi sebou, podle vzoru uživatelského rozhraní navrženého v Microsoft Research laboratořích (http://research.microsoft.com/en-us/um/redmond/projects/mapcruncher/MapSynthesizer/chi1164-elias.pdf a http://youtu.be/JbghIO7bmcM).
+
+K dispozici je i nová online mapová služba (funkční prototyp / beta) s dlaždicemi podle standardu OGC WMTS, a ukázkami použití v různých online klientech (Google Maps API, Leaflet, OpenLayers, atd). Tato služba umožňuje studentům i odborníkům vytvořit nové webové aplikace s pomocí obvyklých nástrojů a použít kterékoliv mapy zpracované v rámci projektu StareMapy.cz.
+Podobně je mapy možné otevřít v GIS software (QGIS, ArcGIS, atd) na stolním počítači a provádět další výzkum.
